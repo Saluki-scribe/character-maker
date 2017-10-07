@@ -24,19 +24,17 @@
 
 <div class="row">
     <div class="col-12">
-        <form action="http://localhost:3000/response" method="POST" id="char-form">
+        <form action="/response" method="POST" id="char-form">
             <h3>Name</h3>
-            <input type="text" id = "char-name" class="form-control" required>
+            <input type="text" name = "name" id = "char-name" class="form-control" required>
             <!--<h3>Age</h3>
-            <input type = "text" id = "char-age" class = "form-control" required>
+            <input type = "text" name = "age" id = "char-age" class = "form-control" required>
             <h3>Species</h3>
-            <input type = "text" id = "char-species" class = "form-control" required>
+            <input type = "text" name = "species" id = "char-species" class = "form-control" required>
             <h3>Description</h3>
-            <textarea id = "char-description" form = "char-form" "char" class= "form-control"></textarea> -->
+            <textarea id = "char-description" name = "description" form = "char-form" "char" class= "form-control"></textarea> -->
+            <input type="submit" value="Submit">
         </form>
-        <div>
-            <button type="submit" id="submit" method = "post">Submit</button>
-        </div>
     </div>
     
 </div>
@@ -48,19 +46,19 @@ $(document).ready(function(){
 
 //When user submits survey, collect data in a new host object and store in hosts.js array via POST
 
-  $("#submit").on("click", function(event) {
-    event.preventDefault();
+  //$("#submit").on("click", function(event) {
+    //event.preventDefault();
 
 //Create a new host object with user's submitted information and survey answers
 
-    var newChar = {
-      "name": $("#char-name").val().trim(),
+//    var newChar = {
+  //    "name": $("#char-name").val().trim(),
       //"age": $("#char-age").val().trim(),
       //"species": $("#char-species").val().trim(),
       //"description": $("#char-description").val().trim()
-    };
+   // };
 
-    console.log(newChar);
+    //console.log(newChar);
 
 //Return data from server
 
@@ -68,7 +66,7 @@ $(document).ready(function(){
 //        alert("Your match is " + data.name);
 //    });
     
-  }); //End #submit on click event
+   //End #submit on click event
 
   $("#save-char").on("click", function(event) {
       event.preventDefault();
