@@ -1,0 +1,26 @@
+{
+  "name": "character-maker",
+  "version": "1.0.0",
+  "description": "An app that lets users build their own roleplay characters",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saluki-scribe/character-maker-2.git"
+  },
+  "author": "Tara Nelson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saluki-scribe/character-maker-2/issues"
+  },
+  "homepage": "https://github.com/Saluki-scribe/character-maker-2#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.15.0"
+  }
+}
