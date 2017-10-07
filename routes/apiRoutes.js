@@ -4,10 +4,11 @@ module.exports = function(app) {
 
    //app.use(express.static('./app/assets'));
 
-//Display survey.html when user requests endpoint '/survey'
+//Display survey.html when user requests endpoint '/response'
 
-    app.get("/results", function(req, res) {
-        res.render("index");
+    app.post("/response", function(req, res) {
+        res.send("Client sent me " + req.body.name);
+        console.log("Respond, darn you!");
     });
 
 }; //End module.exports

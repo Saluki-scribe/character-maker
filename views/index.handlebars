@@ -1,1 +1,80 @@
-<h1>Heeeeey!</h1>
+<!--Start Left-hand Column-->
+
+<div class="row">
+    <div class = "col-5" id="left-col">
+        <div id = "new-chars">
+            <p>Name: {{name}}</p>
+            {{!-- <p>Age: {{age}}</p> --}}
+            {{!-- <p>Species: {{species}}</p> --}}
+            {{!-- <p>Description: {{description}}</p> --}}
+        </div>
+    </div>
+    <div class="col-2">
+        <button id="save-char">Save Character</button>
+    </div>
+
+<!--Start Right-hand Column-->
+
+    <div class="col-5" id="right-col">
+        <p>I am the right column... I'm so lonely</p>
+        <!--Input will go here on click of "save character" button-->
+    </div>
+    
+</div> <!--End Row-->
+
+<div class="row">
+    <div class="col-12">
+        <form action="http://localhost:3000/response" method="POST" id="char-form">
+            <h3>Name</h3>
+            <input type="text" id = "char-name" class="form-control" required>
+            <!--<h3>Age</h3>
+            <input type = "text" id = "char-age" class = "form-control" required>
+            <h3>Species</h3>
+            <input type = "text" id = "char-species" class = "form-control" required>
+            <h3>Description</h3>
+            <textarea id = "char-description" form = "char-form" "char" class= "form-control"></textarea> -->
+        </form>
+        <div>
+            <button type="submit" id="submit" method = "post">Submit</button>
+        </div>
+    </div>
+    
+</div>
+
+
+      
+<script>
+$(document).ready(function(){
+
+//When user submits survey, collect data in a new host object and store in hosts.js array via POST
+
+  $("#submit").on("click", function(event) {
+    event.preventDefault();
+
+//Create a new host object with user's submitted information and survey answers
+
+    var newChar = {
+      "name": $("#char-name").val().trim(),
+      //"age": $("#char-age").val().trim(),
+      //"species": $("#char-species").val().trim(),
+      //"description": $("#char-description").val().trim()
+    };
+
+    console.log(newChar);
+
+//Return data from server
+
+ //   $.post('/characters', newChar, function(data) {
+//        alert("Your match is " + data.name);
+//    });
+    
+  }); //End #submit on click event
+
+  $("#save-char").on("click", function(event) {
+      event.preventDefault();
+
+      //Move object whose button was clicked to the div #right-col
+  });
+
+}); //End document ready function    
+</script>

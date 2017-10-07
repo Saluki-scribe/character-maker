@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 3000;
 
 //Handle errors from MySQL
 
-  /*  connection.connect(function(err) {
+    connection.connect(function(err) {
     if (err) {
       console.error("error connecting: " + err.stack);
       return;
@@ -33,16 +33,18 @@ const PORT = process.env.PORT || 3000;
   
     console.log("connected as id " + connection.threadId);
     });
-*/
+
 // Parse application/x-www-form-urlencoded
+
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(bodyParser.json());
 
 //Set Handlebars as default templating engine
+
     app.engine("handlebars", exphbs({ defaultLayout: "main" }));
     app.set("view engine", "handlebars");
 
-//Helper that console.logs info about client-side requests
+//Custom helper function that console.logs info about client-side requests
 
     app.use(function(req, res, next) {
     
