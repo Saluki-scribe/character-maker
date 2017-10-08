@@ -10,6 +10,6 @@ CREATE TABLE `characters` (
 );
 
 INSERT INTO `characters` (`name`, `active`)
-VALUES ("Chiyo", `false`), ("Hikari", `true`);
+VALUES ("Chiyo", false), ("Hikari", true);
 
 SELECT * FROM `characters`;
