@@ -65,23 +65,40 @@
 
     app.get("/", function(req, res) {
         
-        connection.query("SELECT * FROM characters WHERE active = FALSE;", function(err, data) {
+        connection.query("SELECT * FROM characters;", function(err, data) {
 
             console.log(data);
         
             if (err) throw err;
             var row = JSON.stringify(data);
             data = JSON.parse(row);
-            //var dataResponse = data;
-            console.log("Data = ", data);
-            res.render("index", { characters: data});
+            var chars = [];
+            var actChars = [];
+
+            for (var i = 0; i < data.length; i++) {
+                if(data[i].active == 0) {
+                    console.log("Data[i] = ", data[i]);                    
+                    console.log("Active state: " + data[i].active);
+                    chars.push(data[i]);                    
+                    //res.render("index", {characters: data});
+                } else {
+                    console.log("Data[i] = ", data[i]);                                        
+                    console.log("Active state: " + data[i].active);
+                    actChars.push(data[i])
+                    //res.render("index", {savedCharacters: data});
+                }
+            };
+
+                res.render("index", {characters: chars, savedCharacters: actChars});
+
+           
             //res.render("index", {savedCharacters: data});
             
         });
         
-    });
+    }); //End homepage app.get
 
-    app.get("/", function(req, res) {
+    /*app.get("/", function(req, res) {
         
         connection.query("SELECT * FROM characters WHERE active = TRUE;", function(err, data) {
         
@@ -93,7 +110,7 @@
             res.render("index", {savedCharacters: data});
         });
     });
-
+*/
 
 // Post route -> back to home
 
