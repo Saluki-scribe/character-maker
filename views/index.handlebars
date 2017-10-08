@@ -9,16 +9,16 @@
             {{#each characters}}
                 <div id="char-{{this.id}}">
 
-                <li>
-                <p>ID: {{this.id}}</p>
-                <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
+                    <li>
+                    <p>ID: {{this.id}}</p>
+                    <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
                         <form action="/save/{{this.id}}" method="POST">
-                            <textarea type="text" name="character">{{this.name}}</textarea>
+                            <textarea type="text" name="name">{{this.name}}</textarea>
 
                             <button class= "save-char" type="submit">SAVE</button>
                         </form>
-                </li>
-                            </div>
+                    </li>
+                </div>
             {{/each}}
             </ul>
             
@@ -28,9 +28,6 @@
             {{!-- <p>Species: {{species}}</p> --}}
             {{!-- <p>Description: {{description}}</p> --}}
         </div>
-    </div>
-    <div class="col-2">
-        <button id="save-char">Save Character</button>
     </div>
 
 <!--Start Right-hand Column-->
@@ -42,8 +39,8 @@
                     <li>
                         <p>ID: {{this.id}}</p>
                         <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
-                            <form action="/update/{{this.id}}" method="POST">
-                                <textarea type="text" name="character">{{this.name}}</textarea>
+                        <form action="/update/{{this.id}}" method="POST">
+                            <textarea type="text" name="name">{{this.name}}</textarea>
                             <button type="submit">UPDATE</button>
                         </form>
                     </li>
@@ -71,49 +68,3 @@
     </div>
     
 </div>
-
-
-      
-<script>
-$(document).ready(function(){
-
-//When user submits survey, collect data in a new host object and store in hosts.js array via POST
-
-  //$("#submit").on("click", function(event) {
-    //event.preventDefault();
-
-//Create a new host object with user's submitted information and survey answers
-
-//    var newChar = {
-  //    "name": $("#char-name").val().trim(),
-      //"age": $("#char-age").val().trim(),
-      //"species": $("#char-species").val().trim(),
-      //"description": $("#char-description").val().trim()
-   // };
-
-    //console.log(newChar);
-
-//Return data from server
-
- //   $.post('/characters', newChar, function(data) {
-//        alert("Your match is " + data.name);
-//    });
-    
-   //End #submit on click event
-
-    $(".save-char").on("click", function(event) {
-        event.preventDefault();
-        $(this).closest("div").
-    });
-
-
-/*
-  $("#save-char").on("click", function(event) {
-         event.preventDefault();
-    $("#char-1").appendTo("#right-col")
-         
-      //Move object whose button was clicked to the div #right-col
-  });
-*/
-}); //End document ready function    
-</script>
