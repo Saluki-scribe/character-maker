@@ -112,10 +112,27 @@ app.get('/delete/:id', (req, res) => {
                 //Handle invalid IDs, we only want integers
                 res.send("ERROR_INVALID_ID");
             }
+        connection.query("UPDATE characters SET active = true WHERE id =" + updateID, function(err, data) {
+            //console.log("data.active" + data.active);
+            if (err) throw err;
+            
+           /* for (var i = 0; i < data.length; i++) {
 
+                if (data.active == true) {
+                    
+                    console.log(data.active + "is now active");
+                    
+                }
+                                
+
+            } //End for loop
+*/
+
+
+        })
         connection.query("SELECT * FROM characters WHERE id = " + updateID, function(err, data) {
 
-            if (err) throw err;
+
             var dataResponse = data;
             console.log("Data = ", data);
             res.render("index", { savedCharacters: data});
