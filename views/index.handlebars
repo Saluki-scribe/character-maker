@@ -19,6 +19,7 @@
                         <form action="/save/{{this.id}}" method="POST">
                             <input type="text" name="name" value="{{this.name}}"></input>
                             <button class= "btn btn-success" type="submit">Make Active</button>
+                            <button class="btn btn-info" type="submit" formmethod="post" formaction="/update/{{this.id}}">Update</button>
                         </form>
                         <a class="delete" href="/delete/{{this.id}}"><button class="btn btn-danger">Delete {{this.name}}</button></a>
                     </li>
@@ -37,12 +38,24 @@
                     <li>
                         <p>ID: {{this.id}}</p>
                         <p>Character: {{this.name}}</p>
-                        <form action="/update/{{this.id}}" method="POST">
+                        <form action="/inactive/{{this.id}}" method="POST">
                             <input type="text" name="name" value="{{this.name}}"></input>
                             <button class="btn btn-default" type="submit">Make Inactive</button>
+                            <button class="btn btn-info" type="submit" formmethod="post" formaction="/update/{{this.id}}">Update</button>
+                            
                         </form>
-                        <a href="/update/{{this.id}}"><button class="btn btn-info">Edit</button></a>
                         <a class="delete" href="/delete/{{this.id}}"><button class="btn btn-danger">Delete {{this.name}}</button></a>
+                        
+                        
+                        
+                        <!--<form action="/update/{{this.id}}" method="POST">
+                        <form>
+                            <input type="text" name="name" value="{{this.name}}"></input>
+                            <input type="submit">Update</input>
+                        </form>
+                        
+                        <a href="/update/{{this.id}}"><button class="btn btn-info">Edit</button></a>-->
+                        
                     </li>
             {{/each}}
         </ul>
@@ -65,10 +78,10 @@
             <!--<h3>Age</h3>
             <input type = "text" name = "age" id = "char-age" class = "form-control" required>
             <h3>Species</h3>
-            <input type = "text" name = "species" id = "char-species" class = "form-control" required>-->
+            <input type = "text" name = "species" id = "char-species" class = "form-control" required>
             <h4>Description</h4>
-            <textarea id = "char-description" name = "description" form = "char-form" "char" class= "form-control"></textarea> 
-            <input class = "btn btn-success" type="submit" value="Submit">
+            <textarea id = "char-description" name = "description" form = "char-form" "char" class= "form-control"></textarea> -->
+            <input class = "btn btn-success" type="submit" value="Create">
         </form>
     </div>
     

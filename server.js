@@ -89,10 +89,7 @@
                 }
             };
 
-                res.render("index", {characters: chars, savedCharacters: actChars});
-
-           
-            //res.render("index", {savedCharacters: data});
+            res.render("index", {characters: chars, savedCharacters: actChars});
             
         });
         
@@ -115,11 +112,6 @@
 // Post route -> back to home
 
     app.post("/response", function(req, res) {
-        // Test it
-        //console.log('You sent, ' + req.body.name);
-    
-        // Test it
-        // res.send('You sent, ' + req.body.task);
     
         connection.query("INSERT INTO characters (name) VALUES (?)", [req.body.name], function(err, result) {
             if (err) throw err;
@@ -130,26 +122,26 @@
     
 //Delete a character
 
-app.get('/delete/:id', (req, res) => {
-    let deleteID = parseInt(req.params.id);
-    if (isNaN(deleteID)) {
-      //Handle invalid IDs, we only want integers
-      res.send("Uh-oh! That ID isn't valid.");
-    }
-    // response.send('I am going to delete: ' + deleteID);
-    connection.query(
-      "DELETE FROM `characters` WHERE `id` = ?",
-      deleteID,
-      (err, results) => {
-          if (err) {
-            throw err;
-          }
-          console.log('Deleted ' + results.affectedRows);
-          res.redirect("/");
-    })
-  });
+    app.get('/delete/:id', (req, res) => {
+        let deleteID = parseInt(req.params.id);
+        if (isNaN(deleteID)) {
+        //Handle invalid IDs, we only want integers
+        res.send("Uh-oh! That ID isn't valid.");
+        }
+        // response.send('I am going to delete: ' + deleteID);
+        connection.query(
+        "DELETE FROM `characters` WHERE `id` = ?",
+        deleteID,
+        (err, results) => {
+            if (err) {
+                throw err;
+            }
+            console.log('Deleted ' + results.affectedRows);
+            res.redirect("/");
+        })
+    });
 
-
+//Make an inactive character active
 
     app.post("/save/:id", function(req, res) {
 
@@ -157,35 +149,52 @@ app.get('/delete/:id', (req, res) => {
 
             if (isNaN(updateID)) {
                 //Handle invalid IDs, we only want integers
-                res.send("ERROR_INVALID_ID");
+                res.send("Uh-oh! That ID isn't valid.");
             }
         connection.query("UPDATE characters SET active = true WHERE id =" + updateID, function(err, data) {
 
             if (err) throw err;
-
             res.redirect("/");            
-
         });
-
     });
 
-    app.post('/update/:id', (request, response) => {
-        console.log("Req.bod.name: ", request.body.name);
-        let updateID = parseInt(request.params.id);
+//Make an active character inactive
+
+    app.post("/inactive/:id", function(req, res) {
+    
+        let updateID = parseInt(req.params.id);
+
+        if (isNaN(updateID)) {
+            //Handle invalid IDs, we only want integers
+            res.send("Uh-oh! That ID isn't valid.");
+        }
+        
+        connection.query("UPDATE characters SET active = false WHERE id =" + updateID, function(err, data) {
+            if (err) throw err;
+            res.redirect("/");            
+        });
+    });
+
+
+//Edit a character's name
+
+    app.post('/update/:id', (req, res) => {
+        console.log("Req.bod.name: ", req.body.name);
+        let updateID = parseInt(req.params.id);
         if (isNaN(updateID)) {
           //Handle invalid IDs, we only want integers
-          response.send("ERROR_INVALID_ID");
+          res.send("Uh-oh! That ID isn't valid.");
         }
         connection.query("UPDATE `characters` SET ? WHERE id = " + updateID,
-          {name: request.body.name},
+          {name: req.body.name},
           (err, results) => {
             if (err) 
               throw err;
       
-            response.redirect('/')
+            res.redirect('/')
           }
         )
-        console.log('UPDATE ID: ' + updateID + ' to say: ' + request.body.name);
+        console.log('UPDATE ID: ' + updateID + ' to say: ' + req.body.name);
       });
 
 
