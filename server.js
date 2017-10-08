@@ -65,14 +65,11 @@ const PORT = process.env.PORT || 3000;
         });
     });
 
-
-
-
 // Post route -> back to home
 
-    app.post("/response", function(req, res) {
+    app.post("/test", function(req, res) {
         // Test it
-        console.log('You sent, ' + req.body.name);
+        //console.log('You sent, ' + req.body.name);
     
         // Test it
         // res.send('You sent, ' + req.body.task);
@@ -84,6 +81,26 @@ const PORT = process.env.PORT || 3000;
         });
     });
     
+//Delete a character
+
+app.get('/delete/:id', (req, res) => {
+    let deleteID = parseInt(req.params.id);
+    if (isNaN(deleteID)) {
+      //Handle invalid IDs, we only want integers
+      res.send("Uh-oh! That ID isn't valid.");
+    }
+    // response.send('I am going to delete: ' + deleteID);
+    connection.query(
+      "DELETE FROM `characters` WHERE `id` = ?",
+      deleteID,
+      (err, results) => {
+          if (err) {
+            throw err;
+          }
+          console.log('Deleted ' + results.affectedRows);
+          res.redirect("/");
+    })
+  });
 
 //Call exported apiRoutes.js and htmlRoutes.js
 
