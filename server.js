@@ -1,12 +1,16 @@
+//======================================================================
+//------------------------BASIC SERVER SETUP----------------------------
+//======================================================================
+
 //Make all installed npms usable in server.js
 
-const express = require("express");
-const mysql = require("mysql");
-const bodyParser = require("body-parser");
-const exphbs = require("express-handlebars");
+    const express = require("express");
+    const mysql = require("mysql");
+    const bodyParser = require("body-parser");
+    const exphbs = require("express-handlebars");
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+    const app = express();
+    const PORT = process.env.PORT || 3000;
 
 //Send static 'assets' folder files used by the html files to the server
 
@@ -36,7 +40,7 @@ const PORT = process.env.PORT || 3000;
 
 // Parse application/x-www-form-urlencoded
 
-    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
 
 //Set Handlebars as default templating engine
@@ -44,7 +48,7 @@ const PORT = process.env.PORT || 3000;
     app.engine("handlebars", exphbs({ defaultLayout: "main" }));
     app.set("view engine", "handlebars");
 
-//Custom helper function that console.logs info about client-side requests
+//Custom helper function that console.logs info about incoming requests
 
     app.use(function(req, res, next) {
     
@@ -53,17 +57,60 @@ const PORT = process.env.PORT || 3000;
         next();
     });
 
+//=========================================================================
+//-------------------------DATA ROUTING AND LOGIC-------------------------- 
+//=========================================================================
+
 //Show all current characters
 
     app.get("/", function(req, res) {
         
         connection.query("SELECT * FROM characters;", function(err, data) {
-        if (err) throw err;
-        var dataResponse = data;
-        console.log("Data = ", data);
-        res.render("index", { characters: data});
+
+            console.log(data);
+        
+            if (err) throw err;
+            var row = JSON.stringify(data);
+            data = JSON.parse(row);
+            var chars = [];
+            var actChars = [];
+
+            for (var i = 0; i < data.length; i++) {
+                if(data[i].active == 0) {
+                    console.log("Data[i] = ", data[i]);                    
+                    console.log("Active state: " + data[i].active);
+                    chars.push(data[i]);                    
+                    //res.render("index", {characters: data});
+                } else {
+                    console.log("Data[i] = ", data[i]);                                        
+                    console.log("Active state: " + data[i].active);
+                    actChars.push(data[i])
+                    //res.render("index", {savedCharacters: data});
+                }
+            };
+
+                res.render("index", {characters: chars, savedCharacters: actChars});
+
+           
+            //res.render("index", {savedCharacters: data});
+            
+        });
+        
+    }); //End homepage app.get
+
+    /*app.get("/", function(req, res) {
+        
+        connection.query("SELECT * FROM characters WHERE active = TRUE;", function(err, data) {
+        
+            if (err) throw err;
+
+            var dataResponse = data;
+            console.log("Active data = ", data);
+            //res.render("index", { characters: dataResponse});
+            res.render("index", {savedCharacters: data});
         });
     });
+*/
 
 // Post route -> back to home
 
