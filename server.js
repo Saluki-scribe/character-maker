@@ -67,7 +67,7 @@ const PORT = process.env.PORT || 3000;
 
 // Post route -> back to home
 
-    app.post("/test", function(req, res) {
+    app.post("/response", function(req, res) {
         // Test it
         //console.log('You sent, ' + req.body.name);
     

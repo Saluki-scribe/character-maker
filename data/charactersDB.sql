@@ -9,7 +9,7 @@ CREATE TABLE `characters` (
     PRIMARY KEY(`id`)
 );
 
-INSERT INTO `characters` (`name`)
-VALUES ("Chiyo"), ("Hikari");
+INSERT INTO `characters` (`name`, `active`)
+VALUES ("Chiyo", `false`), ("Hikari", `true`);
 
 SELECT * FROM `characters`;
