@@ -1,51 +1,42 @@
 <!--Start Left-hand Column-->
 
 <div class="row">
+
     <div class = "col-5" id="left-col">
         <div id = "new-chars">
-
-            
             <ul>
             {{#each characters}}
                 <div id="char-{{this.id}}">
 
                     <li>
                     <p>ID: {{this.id}}</p>
-                    <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
+                    <p>Character: {{this.name}}</p>
                         <form action="/save/{{this.id}}" method="POST">
-                            <textarea type="text" name="name">{{this.name}}</textarea>
-
+                            <input type="text" name="name" value="{{this.name}}"></input>
                             <button class= "save-char" type="submit">SAVE</button>
                         </form>
+                        <a class="delete" href="/delete/{{this.id}}"><button>Delete {{this.name}}</button></a>
                     </li>
                 </div>
             {{/each}}
             </ul>
-            
-
-            <!--<p>Name: {{name}}</p>-->
-            {{!-- <p>Age: {{age}}</p> --}}
-            {{!-- <p>Species: {{species}}</p> --}}
-            {{!-- <p>Description: {{description}}</p> --}}
         </div>
     </div>
 
 <!--Start Right-hand Column-->
 
     <div class="col-5" id="right-col">
-
         <ul>
             {{#each savedCharacters}}
                     <li>
                         <p>ID: {{this.id}}</p>
-                        <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
+                        <p>Character: {{this.name}}</p>
                         <form action="/update/{{this.id}}" method="POST">
-                            <textarea type="text" name="name">{{this.name}}</textarea>
-                            <button type="submit">UPDATE</button>
+                            <input type="text" name="name" value="{{this.name}}"></input>
+                            <a href="/update/{{this.id}}"><button>Edit</button></a>
+                            <a class="delete" href="/delete/{{this.id}}"><button>Delete {{this.name}}</button></a>
                         </form>
                     </li>
-                
-                
             {{/each}}
         </ul>
     </div>
@@ -53,6 +44,7 @@
 </div> <!--End Row-->
 
 <div class="row">
+    
     <div class="col-12">
         <form action="/response" method="POST" id="char-form">
             <h3>Name</h3>
