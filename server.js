@@ -123,7 +123,7 @@
     
         connection.query("INSERT INTO characters (name) VALUES (?)", [req.body.name], function(err, result) {
             if (err) throw err;
-        
+            console.log("triggered /response");
             res.redirect("/");
         });
     });
@@ -160,31 +160,33 @@ app.get('/delete/:id', (req, res) => {
                 res.send("ERROR_INVALID_ID");
             }
         connection.query("UPDATE characters SET active = true WHERE id =" + updateID, function(err, data) {
-            //console.log("data.active" + data.active);
+
             if (err) throw err;
-            
-           /* for (var i = 0; i < data.length; i++) {
 
-                if (data.active == true) {
-                    
-                    console.log(data.active + "is now active");
-                    
-                }
-                                
+            res.redirect("/");            
 
-            } //End for loop
-*/
-
-
-        })
-        connection.query("SELECT * FROM characters WHERE id = " + updateID, function(err, data) {
-
-
-            var dataResponse = data;
-            console.log("Data = ", data);
-            res.render("index", { savedCharacters: data});
         });
+
     });
+
+    app.post('/update/:id', (request, response) => {
+        console.log("Req.bod.name: ", request.body.name);
+        let updateID = parseInt(request.params.id);
+        if (isNaN(updateID)) {
+          //Handle invalid IDs, we only want integers
+          response.send("ERROR_INVALID_ID");
+        }
+        connection.query("UPDATE `characters` SET ? WHERE id = " + updateID,
+          {name: request.body.name},
+          (err, results) => {
+            if (err) 
+              throw err;
+      
+            response.redirect('/')
+          }
+        )
+        console.log('UPDATE ID: ' + updateID + ' to say: ' + request.body.name);
+      });
 
 
 
