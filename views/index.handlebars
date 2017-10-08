@@ -3,7 +3,23 @@
 <div class="row">
     <div class = "col-5" id="left-col">
         <div id = "new-chars">
-            <p>Name: {{name}}</p>
+
+            
+            <ul>
+            {{#each characters}}
+                <li>
+                <p>ID: {{this.id}}</p>
+                <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
+                        <form action="/update/{{this.id}}" method="POST">
+                            <textarea type="text" name="character">{{this.name}}</textarea>
+
+                            <button type="submit">UPDATE</button>
+                        </form>
+                </li>
+            {{/each}}
+            </ul>
+
+            <!--<p>Name: {{name}}</p>-->
             {{!-- <p>Age: {{age}}</p> --}}
             {{!-- <p>Species: {{species}}</p> --}}
             {{!-- <p>Description: {{description}}</p> --}}

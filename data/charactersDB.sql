@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS `charactersDB` ;
-
 CREATE DATABASE `charactersDB`;
 
 USE `charactersDB`;

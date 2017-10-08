@@ -1,13 +1,21 @@
 module.exports = function(app) {
     
-//Send static 'assets' folder files used by the html files to the server
-
-   //app.use(express.static('./app/assets'));
-
 //Display survey.html when user requests endpoint '/survey'
+
+   /* 
 
     app.get("/", function(req, res) {
         res.render("index");
     });
+*/
+/*     app.post("/response", function(req, res) {
+
+        var charName = req.body.name;
+
+        res.send("Client sent me " + charName);
+        console.log("Respond, darn you!");
+    });
+*/
+    
 
 }; //End module.exports

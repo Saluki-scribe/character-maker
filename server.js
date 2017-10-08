@@ -53,6 +53,38 @@ const PORT = process.env.PORT || 3000;
         next();
     });
 
+//Show all current characters
+
+    app.get("/", function(req, res) {
+        
+        connection.query("SELECT * FROM characters;", function(err, data) {
+        if (err) throw err;
+        var dataResponse = data;
+        console.log("Data = ", data);
+        res.render("index", { characters: data});
+        });
+    });
+
+
+
+
+// Post route -> back to home
+
+    app.post("/response", function(req, res) {
+        // Test it
+        console.log('You sent, ' + req.body.name);
+    
+        // Test it
+        // res.send('You sent, ' + req.body.task);
+    
+        connection.query("INSERT INTO characters (name) VALUES (?)", [req.body.name], function(err, result) {
+            if (err) throw err;
+        
+            res.redirect("/");
+        });
+    });
+    
+
 //Call exported apiRoutes.js and htmlRoutes.js
 
     require("./routes/apiRoutes")(app);
