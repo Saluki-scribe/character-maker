@@ -102,6 +102,28 @@ app.get('/delete/:id', (req, res) => {
     })
   });
 
+
+
+    app.post("/save/:id", function(req, res) {
+
+        let updateID = parseInt(req.params.id);
+
+            if (isNaN(updateID)) {
+                //Handle invalid IDs, we only want integers
+                res.send("ERROR_INVALID_ID");
+            }
+
+        connection.query("SELECT * FROM characters WHERE id = " + updateID, function(err, data) {
+
+            if (err) throw err;
+            var dataResponse = data;
+            console.log("Data = ", data);
+            res.render("index", { savedCharacters: data});
+        });
+    });
+
+
+
 //Call exported apiRoutes.js and htmlRoutes.js
 
     require("./routes/apiRoutes")(app);

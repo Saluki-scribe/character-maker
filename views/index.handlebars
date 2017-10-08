@@ -7,17 +7,21 @@
             
             <ul>
             {{#each characters}}
+                            <div id="char-{{this.id}}">
+
                 <li>
                 <p>ID: {{this.id}}</p>
                 <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
-                        <form action="/update/{{this.id}}" method="POST">
+                        <form action="/save/{{this.id}}" method="POST">
                             <textarea type="text" name="character">{{this.name}}</textarea>
 
-                            <button type="submit">UPDATE</button>
+                            <button type="submit">SAVE</button>
                         </form>
                 </li>
+                            </div>
             {{/each}}
             </ul>
+            
 
             <!--<p>Name: {{name}}</p>-->
             {{!-- <p>Age: {{age}}</p> --}}
@@ -32,8 +36,22 @@
 <!--Start Right-hand Column-->
 
     <div class="col-5" id="right-col">
+
         <p>I am the right column... I'm so lonely</p>
-        <!--Input will go here on click of "save character" button-->
+        <ul>
+            {{#each savedCharacters}}
+                    <li>
+                        <p>ID: {{this.id}}</p>
+                        <p>Character: {{this.name}} <a class="delete" href="/delete/{{this.id}}">Delete Me!</a></p>
+                            <form action="/update/{{this.id}}" method="POST">
+                                <textarea type="text" name="character">{{this.name}}</textarea>
+                            <button type="submit">UPDATE</button>
+                        </form>
+                    </li>
+                
+                
+            {{/each}}
+        </ul>
     </div>
     
 </div> <!--End Row-->
@@ -85,8 +103,9 @@ $(document).ready(function(){
    //End #submit on click event
 
   $("#save-char").on("click", function(event) {
-      event.preventDefault();
-
+         event.preventDefault();
+    $("#char-1").appendTo("#right-col")
+         
       //Move object whose button was clicked to the div #right-col
   });
 
