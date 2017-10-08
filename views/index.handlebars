@@ -42,20 +42,8 @@
                             <input type="text" name="name" value="{{this.name}}"></input>
                             <button class="btn btn-default" type="submit">Make Inactive</button>
                             <button class="btn btn-info" type="submit" formmethod="post" formaction="/update/{{this.id}}">Update</button>
-                            
                         </form>
                         <a class="delete" href="/delete/{{this.id}}"><button class="btn btn-danger">Delete {{this.name}}</button></a>
-                        
-                        
-                        
-                        <!--<form action="/update/{{this.id}}" method="POST">
-                        <form>
-                            <input type="text" name="name" value="{{this.name}}"></input>
-                            <input type="submit">Update</input>
-                        </form>
-                        
-                        <a href="/update/{{this.id}}"><button class="btn btn-info">Edit</button></a>-->
-                        
                     </li>
             {{/each}}
         </ul>

@@ -95,20 +95,6 @@
         
     }); //End homepage app.get
 
-    /*app.get("/", function(req, res) {
-        
-        connection.query("SELECT * FROM characters WHERE active = TRUE;", function(err, data) {
-        
-            if (err) throw err;
-
-            var dataResponse = data;
-            console.log("Active data = ", data);
-            //res.render("index", { characters: dataResponse});
-            res.render("index", {savedCharacters: data});
-        });
-    });
-*/
-
 // Post route -> back to home
 
     app.post("/response", function(req, res) {
@@ -196,7 +182,6 @@
         )
         console.log('UPDATE ID: ' + updateID + ' to say: ' + req.body.name);
       });
-
 
 
 //Call exported apiRoutes.js and htmlRoutes.js
