@@ -1,9 +1,14 @@
+<!--===============================================================
+~~~~~~~~~~~~~~~~~~~~~~CHARACTER STATUS ROW~~~~~~~~~~~~~~~~~~~~~~~~
+=================================================================-->
+
 <!--Start Left-hand Column-->
 
 <div class="row">
 
     <div class = "col-5" id="left-col">
         <div id = "new-chars">
+            <h4>Inactive Characters</h4>
             <ul>
             {{#each characters}}
                 <div id="char-{{this.id}}">
@@ -13,7 +18,7 @@
                     <p>Character: {{this.name}}</p>
                         <form action="/save/{{this.id}}" method="POST">
                             <input type="text" name="name" value="{{this.name}}"></input>
-                            <button class= "save-char" type="submit">SAVE</button>
+                            <button class= "save-char" type="submit">Make Active</button>
                         </form>
                         <a class="delete" href="/delete/{{this.id}}"><button>Delete {{this.name}}</button></a>
                     </li>
@@ -26,6 +31,7 @@
 <!--Start Right-hand Column-->
 
     <div class="col-5" id="right-col">
+        <h4>Active Characters</h4>
         <ul>
             {{#each savedCharacters}}
                     <li>
@@ -33,9 +39,10 @@
                         <p>Character: {{this.name}}</p>
                         <form action="/update/{{this.id}}" method="POST">
                             <input type="text" name="name" value="{{this.name}}"></input>
-                            <a href="/update/{{this.id}}"><button>Edit</button></a>
-                            <a class="delete" href="/delete/{{this.id}}"><button>Delete {{this.name}}</button></a>
+                            <button type="submit">Make Inactive</button>
                         </form>
+                        <a href="/update/{{this.id}}"><button>Edit</button></a>
+                        <a class="delete" href="/delete/{{this.id}}"><button>Delete {{this.name}}</button></a>
                     </li>
             {{/each}}
         </ul>
@@ -43,20 +50,26 @@
     
 </div> <!--End Row-->
 
+
+<!--===============================================================
+~~~~~~~~~~~~~~~~~~~~~CHARACTER CREATION ROW~~~~~~~~~~~~~~~~~~~~~~~~
+=================================================================-->
+
 <div class="row">
-    
+
     <div class="col-12">
+        <h2>Make a New Character!</h2>
         <form action="/response" method="POST" id="char-form">
-            <h3>Name</h3>
+            <h4>Name</h4>
             <input type="text" name = "name" id = "char-name" class="form-control" required>
             <!--<h3>Age</h3>
             <input type = "text" name = "age" id = "char-age" class = "form-control" required>
             <h3>Species</h3>
-            <input type = "text" name = "species" id = "char-species" class = "form-control" required>
-            <h3>Description</h3>
-            <textarea id = "char-description" name = "description" form = "char-form" "char" class= "form-control"></textarea> -->
+            <input type = "text" name = "species" id = "char-species" class = "form-control" required>-->
+            <h4>Description</h4>
+            <textarea id = "char-description" name = "description" form = "char-form" "char" class= "form-control"></textarea> 
             <input type="submit" value="Submit">
         </form>
     </div>
     
-</div>
+</div> <!--End Character Creation Row-->
