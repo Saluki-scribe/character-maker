@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Saluki-scribe/character-maker-2.git"
+    "url": "git+https://github.com/Saluki-scribe/character-maker.git"
   },
   "author": "Tara Nelson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Saluki-scribe/character-maker-2/issues"
+    "url": "https://github.com/Saluki-scribe/character-maker/issues"
   },
-  "homepage": "https://github.com/Saluki-scribe/character-maker-2#readme",
+  "homepage": "https://github.com/Saluki-scribe/character-maker#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.1",
