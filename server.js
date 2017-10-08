@@ -123,7 +123,7 @@
     
         connection.query("INSERT INTO characters (name) VALUES (?)", [req.body.name], function(err, result) {
             if (err) throw err;
-        
+            console.log("triggered /response");
             res.redirect("/");
         });
     });
@@ -162,28 +162,21 @@ app.get('/delete/:id', (req, res) => {
         connection.query("UPDATE characters SET active = true WHERE id =" + updateID, function(err, data) {
             //console.log("data.active" + data.active);
             if (err) throw err;
-            
-           /* for (var i = 0; i < data.length; i++) {
 
-                if (data.active == true) {
-                    
-                    console.log(data.active + "is now active");
-                    
-                }
-                                
+            res.redirect("/");            
 
-            } //End for loop
-*/
+        });
 
-
-        })
-        connection.query("SELECT * FROM characters WHERE id = " + updateID, function(err, data) {
+        /*connection.query("SELECT * FROM characters WHERE id = " + updateID, function(err, data) {
 
 
             var dataResponse = data;
             console.log("Data = ", data);
             res.render("index", { savedCharacters: data});
-        });
+
+            res.redirect("/");
+            
+        });*/
     });
 
 
