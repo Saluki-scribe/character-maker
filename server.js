@@ -23,7 +23,9 @@
     //Heroku deployment
         connection = mysql.createConnection(process.env.JAWSDB_URL);
     } else {
-    //local host
+
+//local host
+
         connection = mysql.createConnection({
             root: 3000,
             host: "localhost",
